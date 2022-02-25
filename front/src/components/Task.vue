@@ -20,9 +20,10 @@
                         <ul class="list-group">
                             <li v-for="(task, index) of taskList" :key = "index"
                                 class="list-group-item d-flex justify-content-around">
+
                                 <span class="cursor" v-on:click = "editTask(task, index)" >
+                                    <!-- switch the icon about the state of the   variable -->
                                     <i v-bind:class= "[task.state ?   'fa-solid fa-square-check': 'fa-regular fa-square' ] "></i> 
-                                     <!-- <i class="fa-solid fa-square-check"></i>  -->
                                 </span>
                                 {{task.name}}
                                 <span class="cursor text-danger" v-on:click="deleteTask(index)">
@@ -40,19 +41,23 @@
 <script>
     export default {
         name: 'TaskComponent',
+
+        // Creates the task variable
         data(){
             return{
                 task: '',
                 taskList: []
             }
         },
+        // where we play with the task variable
         methods: {
             addTask() {
                 const myTask = {
                     name: this.task,
                     state: false
                 }
-                this.taskList.push(myTask);
+                // adds a new index on taskList
+                this.taskList.push(myTask); 
                 this.myTask = '';
             },
             deleteTask(index){
